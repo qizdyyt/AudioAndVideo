@@ -10,5 +10,6 @@
 
 @interface LyricTool : NSObject
 
+///根据歌词文件名获取歌词模型数组
 +(NSArray *)lyricToolWithName: (NSString *)name;
 @end

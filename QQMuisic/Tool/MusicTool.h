@@ -18,9 +18,9 @@
 ///设置默认的音乐
 +(void)setupPlayingMusic: (Music *)playingMusic;
 
-///返回上一首音乐
+///获取上一首音乐
 +(Music *)previousMusic;
-///返回下一首音乐
+///获取下一首音乐
 +(Music *)nextMusic;
 
 

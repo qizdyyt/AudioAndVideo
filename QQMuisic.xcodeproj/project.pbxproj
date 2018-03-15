@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E8A4DA6205A3F2C00087CAB /* LyricLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A4DA5205A3F2C00087CAB /* LyricLabel.m */; };
 		2EDF06A320594AB00048693D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EDF06A220594AB00048693D /* AppDelegate.m */; };
 		2EDF06A620594AB00048693D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EDF06A520594AB00048693D /* ViewController.m */; };
 		2EDF06A920594AB00048693D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EDF06A720594AB00048693D /* Main.storyboard */; };
@@ -92,6 +93,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E8A4DA4205A3F2C00087CAB /* LyricLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LyricLabel.h; sourceTree = "<group>"; };
+		2E8A4DA5205A3F2C00087CAB /* LyricLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyricLabel.m; sourceTree = "<group>"; };
 		2EDF069E20594AB00048693D /* QQMuisic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QQMuisic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EDF06A120594AB00048693D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2EDF06A220594AB00048693D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -413,6 +416,8 @@
 			children = (
 				2EDF0759205986E40048693D /* LyricView.h */,
 				2EDF075A205986E40048693D /* LyricView.m */,
+				2E8A4DA4205A3F2C00087CAB /* LyricLabel.h */,
+				2E8A4DA5205A3F2C00087CAB /* LyricLabel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -605,6 +610,7 @@
 				2EDF074C2059696E0048693D /* NSObject+MJProperty.m in Sources */,
 				2EDF075E205993790048693D /* LyricTool.m in Sources */,
 				2EDF0754205976590048693D /* NSString+ZDTool.m in Sources */,
+				2E8A4DA6205A3F2C00087CAB /* LyricLabel.m in Sources */,
 				2EDF0757205980CA0048693D /* CALayer+PauseAimate.m in Sources */,
 				2EDF07472059696E0048693D /* NSObject+MJKeyValue.m in Sources */,
 				2EDF06B120594AB00048693D /* main.m in Sources */,

@@ -12,6 +12,7 @@
 #import "NSString+ZDTool.h"
 #import "CALayer+PauseAimate.h"
 #import "LyricView.h"
+#import "LyricLabel.h"
 
 #define ZDColor(r,g,b,a)[UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
@@ -23,7 +24,7 @@
 //歌手图片
 @property (weak, nonatomic) IBOutlet UIImageView *singerImage;
 //歌词label
-@property (weak, nonatomic) IBOutlet UILabel *lyricLabel;
+@property (weak, nonatomic) IBOutlet LyricLabel *lyricLabel;
 //歌名Label
 @property (weak, nonatomic) IBOutlet UILabel *musicNameLabel;
 //歌手Label
@@ -37,7 +38,8 @@
 
 //更新进度条时间timer
 @property (nonatomic, strong) NSTimer *progressTimer;
-
+//更新歌词进度timer
+@property (nonatomic, strong) CADisplayLink *lyricTimer;
 //当前播放器
 @property (nonatomic, strong) AVAudioPlayer *currentPlayer;
 
@@ -70,11 +72,16 @@
     //给滑动条添加点击tap手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sliderTaped:)];
     [self.progressSlider addGestureRecognizer:tap];
+    
+    //通过主界面的歌词Label初始化歌词View中持有的Label，修改哪里则这里也就改了
+    self.lyricView.lrcLabel = self.lyricLabel;
     //开始播放音乐
     [self startPlayingMusic];
-    
     //设置歌词view contentsize
     self.lyricView.contentSize = CGSizeMake(self.view.bounds.size.width * 2, 0);
+
+    // 接受通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addSingerImageAnimate) name:@"XMGIconViewNotification" object:nil];
 }
 
 
@@ -92,9 +99,12 @@
     self.totalTimeLabel.text = [NSString stringWithTime:self.currentPlayer.duration];
     //设置播放按钮
     self.playButton.selected = self.currentPlayer.isPlaying;
-    //开启定时器
+    //开启进度条定时器，首先移除一下定时器，可能之前播放歌曲已经有了一个
     [self removeProgressTimer];
     [self addProgressTimer];
+    //歌词的
+    [self removeLyricTimer];
+    [self addLyricTimer];
     
     //添加头像旋转动画
     [self addSingerImageAnimate];
@@ -139,6 +149,21 @@
     self.progressSlider.value = self.currentPlayer.currentTime / self.currentPlayer.duration;
 }
 
+#pragma mark - 歌词进度timer处理
+-(void)addLyricTimer {
+    self.lyricTimer = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateLyricInfo)];
+    [self.lyricTimer addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+}
+
+-(void)removeLyricTimer{
+    [self.lyricTimer invalidate];
+    self.lyricTimer = nil;
+}
+#pragma mark - 更新歌词进度
+- (void)updateLyricInfo{
+    self.lyricView.currentTime = self.currentPlayer.currentTime;
+}
+
 #pragma mark - slider事件处理
 - (IBAction)sliderTouchDown {
     //移除定时器，让滑动条不要动
@@ -172,6 +197,7 @@
     
 }
 
+#pragma mark - 添加歌手图片转动动画
 - (void)addSingerImageAnimate {
     CABasicAnimation *rotateAnimate = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotateAnimate.fromValue = @(0);
@@ -179,6 +205,9 @@
     rotateAnimate.repeatCount = NSIntegerMax;
     rotateAnimate.duration = 30;
     [self.singerImage.layer addAnimation:rotateAnimate forKey:nil];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"iconViewAnimate"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - 按钮事件处理
@@ -236,6 +265,12 @@
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - 移除通知
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

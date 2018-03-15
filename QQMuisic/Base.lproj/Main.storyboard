@@ -70,7 +70,7 @@
                                             <constraint firstAttribute="width" secondItem="WCm-Nw-Dje" secondAttribute="height" id="uoP-5N-5hw"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="歌词啦啦啦啦啦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wi-iU-PPK">
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="歌词啦啦啦啦啦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wi-iU-PPK" customClass="LyricLabel">
                                         <rect key="frame" x="130.5" y="341.5" width="114.5" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -184,7 +184,7 @@
                         <outlet property="BGImage" destination="EgZ-Pn-H7K" id="hdm-aN-p6H"/>
                         <outlet property="currentTimeLabel" destination="RqT-Sy-rLA" id="WZp-RY-SBr"/>
                         <outlet property="lastButton" destination="8nN-rN-Jha" id="B69-nd-1h3"/>
-                        <outlet property="lyricLabel" destination="8wi-iU-PPK" id="8Cf-Zo-Uq5"/>
+                        <outlet property="lyricLabel" destination="8wi-iU-PPK" id="ICq-wY-SqR"/>
                         <outlet property="lyricView" destination="ylN-EW-wFa" id="f5S-EQ-Tu3"/>
                         <outlet property="musicNameLabel" destination="2HB-BK-rJy" id="Fkh-uC-2YB"/>
                         <outlet property="nextButton" destination="NCg-dz-i8N" id="vUg-wa-uYF"/>
