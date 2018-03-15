@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface AVTools : NSObject
 ///播放本地音效方法
 +(void)playSoundWithSoundName:(NSString *)soundName;
 
 ///播放音乐方法
-+(void)playMusicWithName: (NSString*)musicName;
++(AVAudioPlayer *)playMusicWithName: (NSString*)musicName;
 ///暂停播放音乐
 +(void)pauseMusicWithName: (NSString *)musicName;
 ///停止播放音乐

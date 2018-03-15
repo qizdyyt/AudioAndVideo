@@ -42,7 +42,7 @@ static NSMutableDictionary *_players;
     AudioServicesPlaySystemSound(soundID);
 }
 
-+(void)playMusicWithName:(NSString *)musicName {
++(AVAudioPlayer *)playMusicWithName:(NSString *)musicName {
     
     AVAudioPlayer *player = nil;
     
@@ -52,7 +52,7 @@ static NSMutableDictionary *_players;
         
         NSURL *musicUrl = [[NSBundle mainBundle] URLForResource:musicName withExtension:nil];
         if (musicUrl == nil) {
-            return;
+            return nil;
         }
         
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:musicUrl error:nil];
@@ -63,6 +63,7 @@ static NSMutableDictionary *_players;
     }
     
     [player play];
+    return player;
 }
 
 +(void)pauseMusicWithName:(NSString *)musicName {
