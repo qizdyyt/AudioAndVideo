@@ -20,4 +20,7 @@
 /** 主界面歌词的Lable */
 @property (nonatomic, weak) LyricLabel *lrcLabel;
 
+/*** 当前播放的总时间 **/
+@property (nonatomic, assign) NSTimeInterval duration;
+
 @end

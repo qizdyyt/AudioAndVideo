@@ -490,6 +490,11 @@
 					2EDF069D20594AB00048693D = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					2EDF06B520594AB00048693D = {
 						CreatedOnToolsVersion = 9.2;

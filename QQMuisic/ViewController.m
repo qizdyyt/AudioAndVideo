@@ -13,6 +13,7 @@
 #import "CALayer+PauseAimate.h"
 #import "LyricView.h"
 #import "LyricLabel.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 #define ZDColor(r,g,b,a)[UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
@@ -109,8 +110,15 @@
     //添加头像旋转动画
     [self addSingerImageAnimate];
     
+    //设置锁屏时用的总时长
+    self.lyricView.duration = self.currentPlayer.duration;
     //添加歌词
     self.lyricView.lrcName = playingMusic.lrcname;
+    
+    //添加锁屏信息
+    
+
+//    [self setupLockScreenInfo];
 }
 
 
@@ -266,6 +274,80 @@
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
+
+//#pragma mark - 设置锁屏信息与锁屏时间处理
+//- (void)setupLockScreenInfo
+//{
+//
+//    // MPMediaItemPropertyAlbumTitle
+//    // MPMediaItemPropertyAlbumTrackCount
+//    // MPMediaItemPropertyAlbumTrackNumber
+//    // MPMediaItemPropertyArtist
+//    // MPMediaItemPropertyArtwork
+//    // MPMediaItemPropertyComposer
+//    // MPMediaItemPropertyDiscCount
+//    // MPMediaItemPropertyDiscNumber
+//    // MPMediaItemPropertyGenre
+//    // MPMediaItemPropertyPersistentID
+//    // MPMediaItemPropertyPlaybackDuration
+//    // MPMediaItemPropertyTitle
+//
+//
+//    // 0.获取当前播放的歌曲
+//    Music *playingMusic = [MusicTool playingMusic];
+//
+//    // 1.获取锁屏中心
+//    MPNowPlayingInfoCenter *playingInfoCenter = [MPNowPlayingInfoCenter defaultCenter];
+//
+//    // 2.设置锁屏参数
+//    NSMutableDictionary *playingInfoDict = [NSMutableDictionary dictionary];
+//    // 2.1设置歌曲名
+//    [playingInfoDict setObject:playingMusic.name forKey:MPMediaItemPropertyAlbumTitle];
+//    // 2.2设置歌手名
+//    [playingInfoDict setObject:playingMusic.singer forKey:MPMediaItemPropertyArtist];
+//    // 2.3设置封面的图片
+//    MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithImage:[UIImage imageNamed:playingMusic.icon]];
+//    [playingInfoDict setObject:artwork forKey:MPMediaItemPropertyArtwork];
+//    // 2.4设置歌曲的总时长
+//    [playingInfoDict setObject:@(self.currentPlayer.duration) forKey:MPMediaItemPropertyPlaybackDuration];
+//    playingInfoCenter.nowPlayingInfo = playingInfoDict;
+//
+//    // 3.开启远程交互
+//    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+//}
+//
+//- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+//{
+//    /*
+//     UIEventSubtypeRemoteControlPlay                 = 100,
+//     UIEventSubtypeRemoteControlPause                = 101,
+//     UIEventSubtypeRemoteControlStop                 = 102,
+//     UIEventSubtypeRemoteControlTogglePlayPause      = 103,
+//     UIEventSubtypeRemoteControlNextTrack            = 104,
+//     UIEventSubtypeRemoteControlPreviousTrack        = 105,
+//     UIEventSubtypeRemoteControlBeginSeekingBackward = 106,
+//     UIEventSubtypeRemoteControlEndSeekingBackward   = 107,
+//     UIEventSubtypeRemoteControlBeginSeekingForward  = 108,
+//     UIEventSubtypeRemoteControlEndSeekingForward    = 109,
+//     */
+//    switch (event.subtype) {
+//        case UIEventSubtypeRemoteControlPlay:
+//        case UIEventSubtypeRemoteControlPause:
+//            [self playButtonPressed:nil];
+//            break;
+//
+//        case UIEventSubtypeRemoteControlNextTrack:
+//            [self nextButtonPressed:nil];
+//            break;
+//
+//        case UIEventSubtypeRemoteControlPreviousTrack:
+//            [self lastButtonPressed:nil];
+//            break;
+//
+//        default:
+//            break;
+//    }
+//}
 
 #pragma mark - 移除通知
 - (void)dealloc
